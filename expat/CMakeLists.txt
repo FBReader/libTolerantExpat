@@ -104,7 +104,7 @@ endif()
 if(DEFINED BUILD_SHARED_LIBS)
     set(_EXPAT_SHARED_LIBS_DEFAULT ${BUILD_SHARED_LIBS})
 else()
-    set(_EXPAT_SHARED_LIBS_DEFAULT ON)
+    set(_EXPAT_SHARED_LIBS_DEFAULT OFF)
 endif()
 if(NOT CMAKE_BUILD_TYPE)
     set(CMAKE_BUILD_TYPE NoConfig)  # so that accessing CMAKE_*_POSTFIX will be waterproof
