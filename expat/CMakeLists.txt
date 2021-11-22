@@ -62,15 +62,15 @@ if(POLICY CMP0077)
     cmake_policy(SET CMP0077 NEW)
 endif()
 
-project(expat
+project(TolerantExpat
     VERSION
         2.4.1
     LANGUAGES
         C
 )
 
-set(PACKAGE_BUGREPORT "expat-bugs@libexpat.org")
-set(PACKAGE_NAME "expat")
+set(PACKAGE_BUGREPORT "fbreader@fbreader.org")
+set(PACKAGE_NAME "TolerantExpat")
 set(PACKAGE_VERSION "${PROJECT_VERSION}")
 set(PACKAGE_STRING "${PACKAGE_NAME} ${PACKAGE_VERSION}")
 set(PACKAGE_TARNAME "${PACKAGE_NAME}")
@@ -379,12 +379,12 @@ else()
     set(_SHARED STATIC)
 endif()
 
-add_library(expat ${_SHARED} ${expat_SRCS})
+add_library(TolerantExpat ${_SHARED} ${expat_SRCS})
 if(_EXPAT_LIBM_FOUND)
-    target_link_libraries(expat m)
+    target_link_libraries(TolerantExpat m)
 endif()
 if(EXPAT_WITH_LIBBSD)
-    target_link_libraries(expat ${LIB_BSD})
+    target_link_libraries(TolerantExpat ${LIB_BSD})
 endif()
 
 set(LIBCURRENT 9)   # sync
@@ -393,18 +393,18 @@ set(LIBAGE 8)       # configure.ac!
 math(EXPR LIBCURRENT_MINUS_AGE "${LIBCURRENT} - ${LIBAGE}")
 
 if(NOT WIN32)
-    set_property(TARGET expat PROPERTY VERSION ${LIBCURRENT_MINUS_AGE}.${LIBAGE}.${LIBREVISION})
-    set_property(TARGET expat PROPERTY SOVERSION ${LIBCURRENT_MINUS_AGE})
-    set_property(TARGET expat PROPERTY NO_SONAME ${NO_SONAME})
+    set_property(TARGET TolerantExpat PROPERTY VERSION ${LIBCURRENT_MINUS_AGE}.${LIBAGE}.${LIBREVISION})
+    set_property(TARGET TolerantExpat PROPERTY SOVERSION ${LIBCURRENT_MINUS_AGE})
+    set_property(TARGET TolerantExpat PROPERTY NO_SONAME ${NO_SONAME})
 endif()
 if(WIN32 AND NOT MINGW)
     # NOTE: This avoids a name collision with Expat.dll of Perl's XML::Parser::Expat
     #       on Windows by resorting to filename libexpat.dll since Expat 1.95.3.
     #       Everything but MSVC is already adding prefix "lib", automatically.
-    set_property(TARGET expat PROPERTY PREFIX lib)
+    set_property(TARGET TolerantExpat PROPERTY PREFIX lib)
 endif()
 
-target_include_directories(expat
+target_include_directories(TolerantExpat
     INTERFACE
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/lib>
         $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>
@@ -412,10 +412,10 @@ target_include_directories(expat
 )
 
 if(NOT EXPAT_SHARED_LIBS AND WIN32)
-    target_compile_definitions(expat PUBLIC -DXML_STATIC)
+    target_compile_definitions(TolerantExpat PUBLIC -DXML_STATIC)
 endif()
 
-expat_install(TARGETS expat EXPORT expat
+expat_install(TARGETS TolerantExpat EXPORT TolerantExpat
                       RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
                       LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
                       ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR})
@@ -438,7 +438,7 @@ if(EXPAT_BUILD_PKGCONFIG)
         set(_expat_pkgconfig_includedir "\${prefix}/${CMAKE_INSTALL_INCLUDEDIR}")
     endif()
 
-    set_target_properties(expat PROPERTIES
+    set_target_properties(TolerantExpat PROPERTIES
         pkgconfig_prefix "${CMAKE_INSTALL_PREFIX}"
         pkgconfig_exec_prefix "\${prefix}"
         pkgconfig_libdir "${_expat_pkgconfig_libdir}"
@@ -448,18 +448,18 @@ if(EXPAT_BUILD_PKGCONFIG)
     foreach(_build_type ${CMAKE_BUILD_TYPE} Debug Release RelWithDebInfo MinSizeRel)
         string(TOLOWER "${_build_type}" _build_type_lower)
         string(TOUPPER "${_build_type}" _build_type_upper)
-        set_property(TARGET expat PROPERTY "pkgconfig_${_build_type_lower}_name" "expat${CMAKE_${_build_type_upper}_POSTFIX}")
+        set_property(TARGET TolerantExpat PROPERTY "pkgconfig_${_build_type_lower}_name" "expat${CMAKE_${_build_type_upper}_POSTFIX}")
         if(_EXPAT_LIBM_FOUND)
-            set_property(TARGET expat PROPERTY "pkgconfig_libm" "-lm")
+            set_property(TARGET TolerantExpat PROPERTY "pkgconfig_libm" "-lm")
         else()
-            set_property(TARGET expat PROPERTY "pkgconfig_libm" "")
+            set_property(TARGET TolerantExpat PROPERTY "pkgconfig_libm" "")
         endif()
     endforeach()
 
     file(GENERATE
         OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/$<CONFIG>/expat.pc
         INPUT ${PROJECT_SOURCE_DIR}/expat.pc.cmake
-        TARGET expat)
+        TARGET TolerantExpat)
 
     expat_install(FILES ${CMAKE_CURRENT_BINARY_DIR}/$<CONFIG>/expat.pc DESTINATION ${CMAKE_INSTALL_LIBDIR}/pkgconfig)
 endif()
@@ -477,7 +477,7 @@ if(EXPAT_BUILD_TOOLS)
 
     add_executable(xmlwf ${xmlwf_SRCS})
     set_property(TARGET xmlwf PROPERTY RUNTIME_OUTPUT_DIRECTORY xmlwf)
-    target_link_libraries(xmlwf expat)
+    target_link_libraries(xmlwf TolerantExpat)
     if(_EXPAT_LIBM_FOUND)
         target_link_libraries(xmlwf m)
     endif()
@@ -496,7 +496,7 @@ if(EXPAT_BUILD_TOOLS)
                 "${DOCBOOK_TO_MAN}" "${PROJECT_SOURCE_DIR}/doc/xmlwf.xml" && mv "XMLWF.1" "${PROJECT_BINARY_DIR}/doc/xmlwf.1"
             BYPRODUCTS
                 doc/xmlwf.1)
-        add_dependencies(expat xmlwf-manpage)
+        add_dependencies(TolerantExpat xmlwf-manpage)
         expat_install(FILES "${PROJECT_BINARY_DIR}/doc/xmlwf.1" DESTINATION ${CMAKE_INSTALL_MANDIR}/man1)
     elseif(EXISTS ${PROJECT_SOURCE_DIR}/doc/xmlwf.1)
         expat_install(FILES "${PROJECT_SOURCE_DIR}/doc/xmlwf.1" DESTINATION ${CMAKE_INSTALL_MANDIR}/man1)
@@ -509,11 +509,11 @@ endif()
 if(EXPAT_BUILD_EXAMPLES)
     add_executable(elements examples/elements.c)
     set_property(TARGET elements PROPERTY RUNTIME_OUTPUT_DIRECTORY examples)
-    target_link_libraries(elements expat)
+    target_link_libraries(elements TolerantExpat)
 
     add_executable(outline examples/outline.c)
     set_property(TARGET outline PROPERTY RUNTIME_OUTPUT_DIRECTORY examples)
-    target_link_libraries(outline expat)
+    target_link_libraries(outline TolerantExpat)
 endif()
 
 #
@@ -707,7 +707,7 @@ write_basic_package_version_file(
 )
 export(
     TARGETS
-        expat
+        TolerantExpat
     FILE
         cmake/expat-targets.cmake  # not going to be installed
 )
@@ -720,11 +720,11 @@ expat_install(
 )
 expat_install(
     EXPORT
-        expat
+        TolerantExpat
     DESTINATION
         ${CMAKE_INSTALL_LIBDIR}/cmake/expat-${PROJECT_VERSION}/
     NAMESPACE
-        expat::
+        TolerantExpat::
 )
 
 #
