@@ -468,7 +468,7 @@ PREFIX(scanEndTag)(const ENCODING *enc, const char *ptr, const char *end,
       return XML_TOK_END_TAG;
     default:
       *nextTokPtr = ptr;
-      return XML_TOK_INVALID;
+      return XML_TOK_DATA_CHARS;
     }
   }
   return XML_TOK_PARTIAL;
@@ -498,7 +498,7 @@ PREFIX(scanHexCharRef)(const ENCODING *enc, const char *ptr, const char *end,
         return XML_TOK_CHAR_REF;
       default:
         *nextTokPtr = ptr;
-        return XML_TOK_INVALID;
+        return XML_TOK_DATA_CHARS;
       }
     }
   }
@@ -518,7 +518,7 @@ PREFIX(scanCharRef)(const ENCODING *enc, const char *ptr, const char *end,
       break;
     default:
       *nextTokPtr = ptr;
-      return XML_TOK_INVALID;
+      return XML_TOK_DATA_CHARS;
     }
     for (ptr += MINBPC(enc); HAS_CHAR(enc, ptr, end); ptr += MINBPC(enc)) {
       switch (BYTE_TYPE(enc, ptr)) {
@@ -529,7 +529,7 @@ PREFIX(scanCharRef)(const ENCODING *enc, const char *ptr, const char *end,
         return XML_TOK_CHAR_REF;
       default:
         *nextTokPtr = ptr;
-        return XML_TOK_INVALID;
+        return XML_TOK_DATA_CHARS;
       }
     }
   }
@@ -548,7 +548,7 @@ PREFIX(scanRef)(const ENCODING *enc, const char *ptr, const char *end,
     return PREFIX(scanCharRef)(enc, ptr + MINBPC(enc), end, nextTokPtr);
   default:
     *nextTokPtr = ptr;
-    return XML_TOK_INVALID;
+    return XML_TOK_DATA_CHARS;
   }
   while (HAS_CHAR(enc, ptr, end)) {
     switch (BYTE_TYPE(enc, ptr)) {
@@ -558,7 +558,7 @@ PREFIX(scanRef)(const ENCODING *enc, const char *ptr, const char *end,
       return XML_TOK_ENTITY_REF;
     default:
       *nextTokPtr = ptr;
-      return XML_TOK_INVALID;
+      return XML_TOK_DATA_CHARS;
     }
   }
   return XML_TOK_PARTIAL;
@@ -738,14 +738,14 @@ PREFIX(scanLt)(const ENCODING *enc, const char *ptr, const char *end,
       return PREFIX(scanCdataSection)(enc, ptr + MINBPC(enc), end, nextTokPtr);
     }
     *nextTokPtr = ptr;
-    return XML_TOK_INVALID;
+    return XML_TOK_DATA_CHARS;
   case BT_QUEST:
     return PREFIX(scanPi)(enc, ptr + MINBPC(enc), end, nextTokPtr);
   case BT_SOL:
     return PREFIX(scanEndTag)(enc, ptr + MINBPC(enc), end, nextTokPtr);
   default:
     *nextTokPtr = ptr;
-    return XML_TOK_INVALID;
+    return XML_TOK_DATA_CHARS;
   }
 #  ifdef XML_NS
   hadColon = 0;

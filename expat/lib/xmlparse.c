@@ -2999,17 +2999,18 @@ doContent(XML_Parser parser, int startTagLevel, const ENCODING *enc,
       else {
         int len;
         const char *rawName;
+        rawName = s + enc->minBytesPerChar * 2;
+        len = XmlNameLength(enc, rawName);
+        if (len != parser->m_tagStack->rawNameLength
+            || memcmp(parser->m_tagStack->rawName, rawName, len) != 0) {
+          *eventPP = rawName;
+          //return XML_ERROR_TAG_MISMATCH;
+          break;
+        }
         TAG *tag = parser->m_tagStack;
         parser->m_tagStack = tag->parent;
         tag->parent = parser->m_freeTagList;
         parser->m_freeTagList = tag;
-        rawName = s + enc->minBytesPerChar * 2;
-        len = XmlNameLength(enc, rawName);
-        if (len != tag->rawNameLength
-            || memcmp(tag->rawName, rawName, len) != 0) {
-          *eventPP = rawName;
-          return XML_ERROR_TAG_MISMATCH;
-        }
         --parser->m_tagLevel;
         if (parser->m_endElementHandler) {
           const XML_Char *localPart;
