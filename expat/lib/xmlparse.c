@@ -94,7 +94,7 @@
 #endif
 
 #include "ascii.h"
-#include "expat.h"
+#include "tolerant_expat.h"
 #include "siphash.h"
 
 #if defined(HAVE_GETRANDOM) || defined(HAVE_SYSCALL_GETRANDOM)

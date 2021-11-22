@@ -49,7 +49,7 @@
 #include <math.h> /* for isnan */
 #include <errno.h>
 
-#include "expat.h"
+#include "tolerant_expat.h"
 #include "codepage.h"
 #include "internal.h" /* for UNUSED_P only */
 #include "xmlfile.h"

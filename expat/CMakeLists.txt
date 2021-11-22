@@ -420,7 +420,7 @@ expat_install(TARGETS TolerantExpat EXPORT TolerantExpat
                       LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
                       ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR})
 
-expat_install(FILES lib/expat.h lib/expat_external.h DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
+expat_install(FILES lib/tolerant_expat.h lib/tolerant_expat_external.h DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
 
 #
 # pkg-config file

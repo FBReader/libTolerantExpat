@@ -36,7 +36,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <time.h>
-#include "expat.h"
+#include "tolerant_expat.h"
 
 #ifdef XML_LARGE_SIZE
 #  define XML_FMT_INT_MOD "ll"

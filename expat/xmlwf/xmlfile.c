@@ -49,7 +49,7 @@
 #  include "winconfig.h"
 #endif
 
-#include "expat.h"
+#include "tolerant_expat.h"
 #include "internal.h" /* for UNUSED_P only */
 #include "xmlfile.h"
 #include "xmltchar.h"

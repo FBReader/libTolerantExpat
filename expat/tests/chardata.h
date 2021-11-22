@@ -40,7 +40,7 @@ extern "C" {
 #  define XML_CHARDATA_H 1
 
 #  ifndef XML_VERSION
-#    include "expat.h" /* need XML_Char */
+#    include "tolerant_expat.h" /* need XML_Char */
 #  endif
 
 typedef struct {

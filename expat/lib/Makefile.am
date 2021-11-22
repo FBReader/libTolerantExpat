@@ -32,8 +32,8 @@
 
 include_HEADERS = \
     ../expat_config.h \
-    expat.h \
-    expat_external.h
+    tolerant_expat.h \
+    tolerant_expat_external.h
 
 lib_LTLIBRARIES = libexpat.la
 noinst_LTLIBRARIES = libexpatinternal.la
@@ -69,8 +69,8 @@ uninstall-local:
 EXTRA_DIST = \
     ascii.h \
     asciitab.h \
-    expat_external.h \
-    expat.h \
+    tolerant_expat_external.h \
+    tolerant_expat.h \
     iasciitab.h \
     internal.h \
     latin1tab.h \

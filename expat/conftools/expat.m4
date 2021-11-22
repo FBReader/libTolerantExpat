@@ -3,7 +3,7 @@ dnl Expat >= 1.95.0 is installed in the system.
 dnl If yes, substitute EXPAT_CFLAGS, EXPAT_LIBS with regard to
 dnl the specified PREFIX and set with_expat to PREFIX, or 'yes' if PREFIX
 dnl has not been specified. Also HAVE_LIBEXPAT, HAVE_EXPAT_H are defined.
-dnl If --with-expat has not been specified, set with_expat to 'no'.
+dnl If --with-tolerant_expat has not been specified, set with_expat to 'no'.
 dnl In addition, an Automake conditional EXPAT_INSTALLED is set accordingly.
 dnl This is necessary to adapt a whole lot of packages that have expat
 dnl bundled as a static library.
@@ -31,9 +31,9 @@ AC_DEFUN([AM_WITH_EXPAT],
 	fi
 	expat_save_CFLAGS="$CFLAGS"
 	CFLAGS="$CFLAGS $EXPAT_CFLAGS"
-	AC_CHECK_HEADERS(expat.h, , expat_found=no)
+	AC_CHECK_HEADERS(tolerant_expat.h, , expat_found=no)
 	if test $expat_found = no; then
-		AC_MSG_ERROR([Could not find expat.h])
+		AC_MSG_ERROR([Could not find tolerant_expat.h])
 	fi
 	CFLAGS="$expat_save_CFLAGS"
   fi

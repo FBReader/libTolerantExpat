@@ -58,7 +58,7 @@ dnl test. I believe this test will work, but I don't have a place with non-
 dnl GNU M4 to test it right now.
 m4_define([expat_version],
   m4_ifdef([__gnu__],
-           [esyscmd(conftools/get-version.sh lib/expat.h)],
+           [esyscmd(conftools/get-version.sh lib/tolerant_expat.h)],
            [2.2.x]))
 AC_INIT([expat], expat_version, [expat-bugs@libexpat.org])
 m4_undefine([expat_version])

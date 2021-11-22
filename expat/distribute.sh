@@ -34,7 +34,7 @@ set -e
 PS4='# '
 set -x
 
-version="$(./conftools/get-version.sh lib/expat.h)"
+version="$(./conftools/get-version.sh lib/tolerant_expat.h)"
 
 ./buildconf.sh
 ./configure

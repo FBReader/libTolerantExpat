@@ -37,7 +37,7 @@ extern "C" {
 #ifndef XML_STRUCTDATA_H
 #  define XML_STRUCTDATA_H 1
 
-#  include "expat.h"
+#  include "tolerant_expat.h"
 
 typedef struct {
   const XML_Char *str;

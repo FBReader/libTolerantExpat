@@ -17,7 +17,7 @@
 #include <assert.h>
 #include <stdint.h>
 
-#include "expat.h"
+#include "tolerant_expat.h"
 #include "siphash.h"
 
 // Macros to convert preprocessor macros to string literals. See

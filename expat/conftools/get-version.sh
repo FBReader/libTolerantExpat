@@ -1,9 +1,9 @@
 #!/bin/sh
-# USAGE: get-version.sh path/to/expat.h
+# USAGE: get-version.sh path/to/tolerant_expat.h
 #
 # This script will print Expat's version number on stdout. For example:
 #
-#   $ ./conftools/get-version.sh ./lib/expat.h
+#   $ ./conftools/get-version.sh ./lib/tolerant_expat.h
 #   1.95.3
 #                          __  __            _
 #                       ___\ \/ /_ __   __ _| |_
@@ -36,15 +36,15 @@
 # USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 if test $# = 0; then
-  echo "ERROR: pathname for expat.h was not provided."
+  echo "ERROR: pathname for tolerant_expat.h was not provided."
   echo ""
-  echo "USAGE: $0 path/to/expat.h"
+  echo "USAGE: $0 path/to/tolerant_expat.h"
   exit 1
 fi
 if test $# != 1; then
   echo "ERROR: too many arguments were provided."
   echo ""
-  echo "USAGE: $0 path/to/expat.h"
+  echo "USAGE: $0 path/to/tolerant_expat.h"
   exit 1
 fi
 

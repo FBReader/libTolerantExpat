@@ -46,7 +46,7 @@
 #  include "winconfig.h"
 #endif
 
-#include "expat_external.h"
+#include "tolerant_expat_external.h"
 #include "internal.h"
 #include "xmlrole.h"
 #include "ascii.h"

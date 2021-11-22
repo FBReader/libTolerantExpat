@@ -37,8 +37,8 @@
    USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
-#ifndef Expat_External_INCLUDED
-#define Expat_External_INCLUDED 1
+#ifndef Tolerant_Expat_External_INCLUDED
+#define Tolerant_Expat_External_INCLUDED 1
 
 /* External API definitions */
 
@@ -162,4 +162,4 @@ typedef unsigned long XML_Size;
 }
 #endif
 
-#endif /* not Expat_External_INCLUDED */
+#endif /* not Tolerant_Expat_External_INCLUDED */

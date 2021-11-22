@@ -60,7 +60,7 @@
 #  include <stdbool.h>
 #endif
 
-#include "expat.h"
+#include "tolerant_expat.h"
 #include "chardata.h"
 #include "structdata.h"
 #include "internal.h"
@@ -2858,7 +2858,7 @@ counting_start_element_handler(void *userData, const XML_Char *name,
    * count of items in atts, an array which contains alternating
    * attribute names and attribute values.  For the naive user this
    * is possibly a little unexpected, but it is what the
-   * documentation in expat.h tells us to expect.
+   * documentation in tolerant_expat.h tells us to expect.
    */
   count = XML_GetSpecifiedAttributeCount(g_parser);
   if (info->attr_count * 2 != count) {
@@ -7353,13 +7353,13 @@ START_TEST(test_misc_version) {
 
 #if ! defined(XML_UNICODE) || defined(XML_UNICODE_WCHAR_T)
   if (xcstrcmp(version_text, XCS("expat_2.4.1"))) /* needs bump on releases */
-    fail("XML_*_VERSION in expat.h out of sync?\n");
+    fail("XML_*_VERSION in tolerant_expat.h out of sync?\n");
 #else
   /* If we have XML_UNICODE defined but not XML_UNICODE_WCHAR_T
    * then XML_LChar is defined as char, for some reason.
    */
   if (strcmp(version_text, "expat_2.2.5")) /* needs bump on releases */
-    fail("XML_*_VERSION in expat.h out of sync?\n");
+    fail("XML_*_VERSION in tolerant_expat.h out of sync?\n");
 #endif /* ! defined(XML_UNICODE) || defined(XML_UNICODE_WCHAR_T) */
 }
 END_TEST

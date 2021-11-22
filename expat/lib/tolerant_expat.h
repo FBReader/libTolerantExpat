@@ -37,11 +37,11 @@
    USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
-#ifndef Expat_INCLUDED
-#define Expat_INCLUDED 1
+#ifndef Tolerant_Expat_INCLUDED
+#define Tolerant_Expat_INCLUDED 1
 
 #include <stdlib.h>
-#include "expat_external.h"
+#include "tolerant_expat_external.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -1047,4 +1047,4 @@ XML_SetBillionLaughsAttackProtectionActivationThreshold(
 }
 #endif
 
-#endif /* not Expat_INCLUDED */
+#endif /* not Tolerant_Expat_INCLUDED */
